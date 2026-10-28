@@ -222,6 +222,10 @@
     left: var(--space-4);
     right: var(--space-4);
     bottom: var(--space-4);
+    flex-direction: column-reverse;
+    gap: var(--space-3);
+    text-align: center;
+    font-size: 0.65rem;
   }
 }
 
