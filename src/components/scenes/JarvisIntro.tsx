@@ -14,7 +14,7 @@ export default function JarvisIntro({ onComplete }: JarvisIntroProps) {
   const reducedMotion = useReducedMotion();
   const [lineIndex, setLineIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
-  const [voiceEnabled, setVoiceEnabled] = useState(false);
+  const [voiceEnabled, setVoiceEnabled] = useState(true);
   const [voiceAvailable] = useState(hasSpeechSynthesis);
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
 
@@ -173,13 +173,6 @@ export default function JarvisIntro({ onComplete }: JarvisIntroProps) {
           <span>Continue</span>
         </button>
       </motion.div>
-
-      {/* Voice note */}
-      {voiceAvailable && (
-        <p className={styles.voiceNote}>
-          Voice uses browser speech synthesis — no external service.
-        </p>
-      )}
     </motion.section>
   );
 }

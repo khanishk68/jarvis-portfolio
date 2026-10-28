@@ -11,28 +11,29 @@ import Projects from './components/scenes/Projects';
 import Skills from './components/scenes/Skills';
 import Contact from './components/scenes/Contact';
 import Footer from './components/scenes/Footer';
+import JarvisVoicePlayer from './components/audio/JarvisVoicePlayer';
 
 type Stage = 'boot' | 'intro' | 'main';
 
 export default function App() {
-  const [stage, setStage] = useState<Stage>('boot');
+  const [stage, setStage] = useState<Stage>('main');
 
   return (
     <>
       {/* Custom cursor — only renders on fine pointer devices */}
       <CustomCursor />
 
-      {/* Boot sequence */}
+      {/* Boot sequence (available on demand) */}
       {stage === 'boot' && (
-        <BootSequence onComplete={() => setStage('intro')} />
+        <BootSequence onComplete={() => setStage('main')} />
       )}
 
-      {/* JARVIS intro narration */}
+      {/* JARVIS intro narration (available on demand) */}
       {stage === 'intro' && (
         <JarvisIntro onComplete={() => setStage('main')} />
       )}
 
-      {/* Main portfolio */}
+      {/* Main portfolio — opens directly */}
       {stage === 'main' && (
         <>
           {/* Skip to content — first focusable element */}
@@ -41,6 +42,9 @@ export default function App() {
           </a>
 
           <Navigation />
+
+          {/* JARVIS background voice — unmuted by default, zero captions */}
+          <JarvisVoicePlayer />
 
           <main id="main-content">
             <Hero />
