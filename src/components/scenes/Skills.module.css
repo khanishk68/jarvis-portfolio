@@ -150,23 +150,44 @@
 @media (max-width: 768px) {
   .layout {
     grid-template-columns: 1fr;
-    gap: var(--space-8);
+    gap: var(--space-6);
+  }
+
+  .heading {
+    font-size: clamp(2rem, 8vw, 2.75rem);
+  }
+
+  .sub {
+    margin-bottom: var(--space-6);
+    font-size: var(--text-xs);
   }
 
   .tabs {
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: var(--space-2);
     position: static;
     gap: var(--space-2);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
   }
 
   .tab {
-    padding: var(--space-2) var(--space-3);
+    flex-shrink: 0;
+    padding: var(--space-2) var(--space-4);
+    min-height: 42px;
     font-size: var(--text-xs);
+    white-space: nowrap;
   }
 
-  .heading {
-    font-size: var(--text-4xl);
+  .panel {
+    min-height: auto;
   }
 }
 

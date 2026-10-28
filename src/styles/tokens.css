@@ -129,6 +129,14 @@
   --section-padding: clamp(5rem, 10vh, 8rem);
 }
 
+/* Mobile layout adjustments */
+@media (max-width: 640px) {
+  :root {
+    --nav-height: 60px;
+    --section-padding: clamp(3.5rem, 7vh, 5rem);
+  }
+}
+
 /* Reduced-motion overrides */
 @media (prefers-reduced-motion: reduce) {
   :root {

@@ -113,17 +113,20 @@
   display: none;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
   border-radius: var(--radius-md);
   color: var(--color-muted);
   transition: color var(--transition-fast), background var(--transition-fast);
   margin-left: auto;
 }
 
-.menuToggle:hover {
+.menuToggle:hover,
+.menuToggle:active {
   color: var(--color-white);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 /* ── Mobile nav ── */
@@ -131,27 +134,31 @@
   position: fixed;
   inset: 0;
   z-index: calc(var(--z-nav) - 1);
-  background: rgba(5, 5, 8, 0.97);
+  background: rgba(5, 5, 8, 0.98);
   backdrop-filter: var(--blur-heavy);
   -webkit-backdrop-filter: var(--blur-heavy);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: var(--space-16) var(--space-8);
+  padding: calc(var(--nav-height) + var(--space-4)) var(--space-6) max(var(--space-6), env(safe-area-inset-bottom, 24px));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  max-height: 100dvh;
 }
 
 .mobileLink {
   display: flex;
   align-items: center;
   gap: var(--space-4);
-  padding: var(--space-4) 0;
-  font-size: var(--text-4xl);
+  padding: var(--space-3) 0;
+  font-size: clamp(1.75rem, 6.5vw, 2.5rem);
   font-weight: var(--weight-black);
   color: var(--color-dim);
   text-decoration: none;
   border-bottom: 1px solid var(--color-border);
   transition: color var(--transition-fast);
   letter-spacing: var(--tracking-tight);
+  min-height: 48px;
 }
 
 .mobileLink:hover,

@@ -117,13 +117,14 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
 
       {/* Footer info & skip button */}
       <div className={styles.footerInfo}>
-        <span>KHANISHK // AI PORTFOLIO SYSTEM</span>
+        <span className={styles.footerTitle}>KHANISHK // AI PORTFOLIO SYSTEM</span>
         <button
           className={styles.skipBtn}
           onClick={handleFinish}
           aria-label="Skip loading animation"
         >
-          Skip Intro <span aria-hidden="true">[ESC]</span>
+          <span>Skip Intro</span>
+          <span className={styles.escBadge} aria-hidden="true">[ESC]</span>
         </button>
       </div>
     </motion.div>

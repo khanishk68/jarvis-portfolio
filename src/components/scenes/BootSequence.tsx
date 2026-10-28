@@ -174,7 +174,8 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
             onClick={handleSkip}
             aria-label="Skip intro animation"
           >
-            {copy.boot.skip} <span aria-hidden="true">ESC</span>
+            <span>{copy.boot.skip}</span>
+            <span className={styles.escBadge} aria-hidden="true">ESC</span>
           </button>
 
           {/* Screen reader announcement */}

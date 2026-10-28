@@ -125,7 +125,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-3);
-  width: 280px;
+  width: min(280px, 86vw);
 }
 
 .statusText {
@@ -179,22 +179,41 @@
 
 .skipBtn {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   letter-spacing: var(--tracking-widest);
   color: var(--color-muted);
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--color-border);
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-full);
   cursor: pointer;
   transition: color var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
   text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
 }
 
 .skipBtn:hover {
   color: var(--color-cyan-bright);
   border-color: var(--color-cyan);
   background: rgba(6, 182, 212, 0.08);
+}
+
+.escBadge {
+  padding: 1px 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  font-size: 0.6rem;
+  color: var(--color-dim);
+}
+
+.footerTitle {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-dim);
+  letter-spacing: var(--tracking-wider);
 }
 
 @keyframes spin {
@@ -205,6 +224,12 @@
 @keyframes spin-reverse {
   from { transform: rotate(360deg); }
   to { transform: rotate(0deg); }
+}
+
+@media (max-width: 768px), (pointer: coarse) {
+  .escBadge {
+    display: none;
+  }
 }
 
 @media (max-width: 640px) {
@@ -221,11 +246,27 @@
   .footerInfo {
     left: var(--space-4);
     right: var(--space-4);
-    bottom: var(--space-4);
+    bottom: max(var(--space-4), env(safe-area-inset-bottom, 16px));
     flex-direction: column-reverse;
     gap: var(--space-3);
     text-align: center;
-    font-size: 0.65rem;
+  }
+  .footerTitle {
+    font-size: 0.62rem;
+    letter-spacing: var(--tracking-wide);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90vw;
+  }
+  .skipBtn {
+    min-height: 44px;
+    padding: 0 var(--space-5);
+    font-size: 0.75rem;
+    background: rgba(6, 182, 212, 0.08);
+    border-color: rgba(6, 182, 212, 0.3);
+    color: var(--color-cyan-bright);
+    box-shadow: 0 0 16px rgba(6, 182, 212, 0.15);
   }
 }
 

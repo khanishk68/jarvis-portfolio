@@ -31,7 +31,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
   gap: var(--space-6);
 }
 
@@ -241,10 +241,36 @@
 @media (max-width: 640px) {
   .grid {
     grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .card {
+    padding: var(--space-5);
+  }
+
+  .cardName {
+    font-size: var(--text-xl);
   }
 
   .heading {
-    font-size: var(--text-4xl);
+    font-size: clamp(2rem, 8vw, 2.75rem);
+    margin-bottom: var(--space-6);
+  }
+
+  .links {
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .linkBtn {
+    flex: 1 1 140px;
+    justify-content: center;
+    min-height: 44px;
+  }
+
+  .expandToggle {
+    min-height: 44px;
+    padding: var(--space-3);
   }
 }
 
