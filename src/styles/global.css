@@ -111,6 +111,7 @@ body {
 .section {
   padding-block: var(--section-padding);
   position: relative;
+  scroll-margin-top: calc(var(--nav-height) + var(--space-4));
 }
 
 .sr-only {

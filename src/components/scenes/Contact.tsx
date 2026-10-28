@@ -21,6 +21,7 @@ interface FormErrors {
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
+  const [sent, setSent] = useState(false);
   const [form, setForm] = useState<FormData>({ name: '', email: '', message: '' });
   const [errors, setErrors] = useState<FormErrors>({});
   const formRef = useRef<HTMLFormElement>(null);
@@ -54,6 +55,8 @@ export default function Contact() {
       return;
     }
     setErrors({});
+    setSent(true);
+    setTimeout(() => setSent(false), 6000);
     // Open email client (no backend configured)
     const subject = encodeURIComponent(`Portfolio Contact from ${form.name}`);
     const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`);
@@ -255,6 +258,13 @@ export default function Contact() {
                   <span id="error-message" className={styles.errorMsg} role="alert">{errors.message}</span>
                 )}
               </div>
+
+              {sent && (
+                <div className={styles.successBanner} role="status">
+                  <Check size={16} />
+                  <span>Email client opened with prefilled message!</span>
+                </div>
+              )}
 
               <GlowButton type="submit" variant="primary" aria-label="Send message via email client">
                 <Send size={15} />

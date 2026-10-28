@@ -19,6 +19,22 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+      const onKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') setMobileOpen(false);
+      };
+      window.addEventListener('keydown', onKeyDown);
+      return () => {
+        document.body.style.overflow = '';
+        window.removeEventListener('keydown', onKeyDown);
+      };
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [mobileOpen]);
+
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
     scrollToSection(href);

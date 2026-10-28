@@ -155,10 +155,10 @@ export default function JarvisVoicePlayer() {
       <button
         className={styles.btn}
         onClick={toggleMute}
-        aria-label={isSpeaking ? 'Mute JARVIS voice' : 'Play JARVIS voice'}
-        title={isSpeaking ? 'Mute' : 'Play JARVIS Voice'}
+        aria-label={isMuted ? 'Unmute JARVIS voice' : 'Mute JARVIS voice'}
+        title={isMuted ? 'Unmute' : 'Mute'}
       >
-        {isSpeaking ? <Volume2 size={15} /> : <VolumeX size={15} />}
+        {isMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
       </button>
 
       <button
@@ -172,3 +172,4 @@ export default function JarvisVoicePlayer() {
     </aside>
   );
 }
+
