@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import './styles/tokens.css';
 import './styles/global.css';
 import CustomCursor from './components/cursor/CustomCursor';
@@ -12,16 +13,25 @@ import Skills from './components/scenes/Skills';
 import Contact from './components/scenes/Contact';
 import Footer from './components/scenes/Footer';
 import JarvisVoicePlayer from './components/audio/JarvisVoicePlayer';
+import LoadingScreen from './components/loading/LoadingScreen';
 
 type Stage = 'boot' | 'intro' | 'main';
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
   const [stage, setStage] = useState<Stage>('main');
 
   return (
     <>
       {/* Custom cursor — only renders on fine pointer devices */}
       <CustomCursor />
+
+      {/* Cinematic HUD Loading Interface */}
+      <AnimatePresence mode="wait">
+        {isLoading && (
+          <LoadingScreen onComplete={() => setIsLoading(false)} />
+        )}
+      </AnimatePresence>
 
       {/* Boot sequence (available on demand) */}
       {stage === 'boot' && (
@@ -33,7 +43,7 @@ export default function App() {
         <JarvisIntro onComplete={() => setStage('main')} />
       )}
 
-      {/* Main portfolio — opens directly */}
+      {/* Main portfolio */}
       {stage === 'main' && (
         <>
           {/* Skip to content — first focusable element */}
@@ -43,8 +53,8 @@ export default function App() {
 
           <Navigation />
 
-          {/* JARVIS background voice — unmuted by default, zero captions */}
-          <JarvisVoicePlayer />
+          {/* JARVIS background voice — begins as soon as loading completes */}
+          <JarvisVoicePlayer active={!isLoading} />
 
           <main id="main-content">
             <Hero />

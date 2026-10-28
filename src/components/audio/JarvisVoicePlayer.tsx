@@ -4,7 +4,11 @@ import { copy } from '../../data/copy';
 import { hasSpeechSynthesis } from '../../lib/utils';
 import styles from './JarvisVoicePlayer.module.css';
 
-export default function JarvisVoicePlayer() {
+interface JarvisVoicePlayerProps {
+  active?: boolean;
+}
+
+export default function JarvisVoicePlayer({ active = true }: JarvisVoicePlayerProps) {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const hasSpokenRef = useRef(false);
@@ -88,7 +92,7 @@ export default function JarvisVoicePlayer() {
   };
 
   useEffect(() => {
-    if (!hasSpeechSynthesis()) return;
+    if (!hasSpeechSynthesis() || !active) return;
 
     if (window.speechSynthesis.onvoiceschanged !== undefined) {
       window.speechSynthesis.onvoiceschanged = () => {
@@ -131,7 +135,7 @@ export default function JarvisVoicePlayer() {
         window.speechSynthesis.cancel();
       }
     };
-  }, [speak]);
+  }, [speak, active]);
 
   if (!hasSpeechSynthesis()) return null;
 
