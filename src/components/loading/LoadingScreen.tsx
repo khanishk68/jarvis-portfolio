@@ -129,3 +129,4 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
     </motion.div>
   );
 }
+
