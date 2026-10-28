@@ -1,0 +1,207 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-nav);
+  height: var(--nav-height);
+  transition: background var(--transition-mid), backdrop-filter var(--transition-mid),
+    border-color var(--transition-mid);
+  border-bottom: 1px solid transparent;
+}
+
+.header.scrolled {
+  background: rgba(5, 5, 8, 0.85);
+  backdrop-filter: var(--blur-glass);
+  -webkit-backdrop-filter: var(--blur-glass);
+  border-bottom-color: var(--color-border);
+}
+
+.inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+/* ── Logo ── */
+.logo {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logoGlyph {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-black);
+  background: linear-gradient(135deg, var(--color-cyan-bright), var(--color-electric-glow));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+
+.logoText {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-muted);
+}
+
+/* ── Desktop nav ── */
+.desktopNav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-left: auto;
+}
+
+.navLink {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-muted);
+  border-radius: var(--radius-md);
+  transition: color var(--transition-fast), background var(--transition-fast);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  text-decoration: none;
+}
+
+.navLink:hover {
+  color: var(--color-white);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.navLink.active {
+  color: var(--color-cyan-bright);
+  background: var(--color-cyan-dim);
+}
+
+/* ── Status pill ── */
+.statusPill {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid rgba(6, 182, 212, 0.2);
+  border-radius: var(--radius-full);
+  background: rgba(6, 182, 212, 0.05);
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--color-cyan);
+  animation: pulse-ring 2s ease-in-out infinite;
+  box-shadow: 0 0 6px var(--color-cyan);
+}
+
+.statusText {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: var(--tracking-widest);
+  color: var(--color-cyan);
+}
+
+/* ── Menu toggle ── */
+.menuToggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  color: var(--color-muted);
+  transition: color var(--transition-fast), background var(--transition-fast);
+  margin-left: auto;
+}
+
+.menuToggle:hover {
+  color: var(--color-white);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ── Mobile nav ── */
+.mobileNav {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-nav) - 1);
+  background: rgba(5, 5, 8, 0.97);
+  backdrop-filter: var(--blur-heavy);
+  -webkit-backdrop-filter: var(--blur-heavy);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-16) var(--space-8);
+}
+
+.mobileLink {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-black);
+  color: var(--color-dim);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-border);
+  transition: color var(--transition-fast);
+  letter-spacing: var(--tracking-tight);
+}
+
+.mobileLink:hover,
+.mobileLink.active {
+  color: var(--color-white);
+}
+
+.mobileLink.active {
+  color: var(--color-cyan-bright);
+}
+
+.mobileLinkIndex {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-cyan);
+  letter-spacing: var(--tracking-widest);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.mobileContact {
+  margin-top: var(--space-8);
+}
+
+.mobileEmail {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  text-decoration: none;
+}
+
+.mobileEmail:hover {
+  color: var(--color-cyan-bright);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .desktopNav,
+  .statusPill {
+    display: none;
+  }
+
+  .menuToggle {
+    display: flex;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobileNav {
+    display: none !important;
+  }
+}
+

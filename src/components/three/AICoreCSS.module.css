@@ -1,0 +1,145 @@
+.core {
+  position: relative;
+  width: 360px;
+  height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Central orb */
+.orb {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-full);
+  background: radial-gradient(circle at 35% 35%,
+    var(--color-cyan-bright) 0%,
+    var(--color-electric) 40%,
+    var(--color-violet) 70%,
+    transparent 100%);
+  box-shadow: var(--glow-cyan), var(--glow-violet);
+  animation: float 4s ease-in-out infinite;
+  z-index: 2;
+}
+
+/* Rings */
+.ring {
+  position: absolute;
+  border-radius: var(--radius-full);
+  border: 1px solid;
+  animation: spin-slow linear infinite;
+}
+
+.ring1 {
+  width: 130px;
+  height: 130px;
+  border-color: rgba(6, 182, 212, 0.5);
+  animation-duration: 8s;
+}
+
+.ring2 {
+  width: 190px;
+  height: 190px;
+  border-color: rgba(124, 58, 237, 0.35);
+  animation-duration: 14s;
+  animation-direction: reverse;
+  border-style: dashed;
+}
+
+.ring3 {
+  width: 255px;
+  height: 255px;
+  border-color: rgba(6, 182, 212, 0.2);
+  animation-duration: 20s;
+}
+
+.ring4 {
+  width: 320px;
+  height: 320px;
+  border-color: rgba(168, 85, 247, 0.15);
+  animation-duration: 28s;
+  animation-direction: reverse;
+  border-style: dashed;
+}
+
+/* Hex nodes (orbit dots) */
+.hexGrid {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  animation: spin-slow 12s linear infinite;
+}
+
+.hexNode {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-cyan);
+  box-shadow: 0 0 8px var(--color-cyan);
+  transform:
+    rotate(calc(var(--i) * 60deg))
+    translateY(-90px)
+    translate(-50%, -50%);
+  animation: pulse-ring 2s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.3s);
+}
+
+/* Scan line */
+.scanLine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    var(--color-cyan-bright),
+    transparent);
+  animation: scan-line 3s linear infinite;
+  opacity: 0.6;
+}
+
+/* Corner decorators */
+.corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  opacity: 0.5;
+}
+
+.corner::before,
+.corner::after {
+  content: '';
+  position: absolute;
+  background: var(--color-cyan);
+}
+
+.corner::before {
+  width: 100%;
+  height: 1.5px;
+}
+
+.corner::after {
+  width: 1.5px;
+  height: 100%;
+}
+
+.tl { top: 20px; left: 20px; }
+.tr { top: 20px; right: 20px; transform: scaleX(-1); }
+.bl { bottom: 20px; left: 20px; transform: scaleY(-1); }
+.br { bottom: 20px; right: 20px; transform: scale(-1); }
+
+/* Reduced motion: freeze animations */
+@media (prefers-reduced-motion: reduce) {
+  .orb,
+  .ring,
+  .hexGrid,
+  .hexNode,
+  .scanLine {
+    animation: none !important;
+  }
+}
+

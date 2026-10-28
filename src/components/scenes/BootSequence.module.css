@@ -1,0 +1,192 @@
+.boot {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-boot);
+  background: var(--color-obsidian);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  overflow: hidden;
+}
+
+/* Atmospheric glows */
+.glow1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.12), transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.glow2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.1), transparent 70%);
+  top: 30%;
+  right: 20%;
+  transform: translate(50%, -50%);
+}
+
+/* Core */
+.coreWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* System log */
+.sysLog {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-cyan);
+  letter-spacing: 0.04em;
+  max-width: 480px;
+  width: 100%;
+  padding-inline: var(--space-4);
+  min-height: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sysLine {
+  display: flex;
+  gap: var(--space-2);
+  opacity: 0.5;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sysLine.active {
+  opacity: 1;
+}
+
+.prompt {
+  color: var(--color-violet-glow);
+  flex-shrink: 0;
+}
+
+.cursor {
+  display: inline-block;
+  color: var(--color-cyan);
+  animation: blink 1s step-end infinite;
+  font-size: var(--text-base);
+}
+
+/* Headline */
+.headline {
+  text-align: center;
+}
+
+.headlineText {
+  font-size: var(--text-7xl);
+  font-weight: var(--weight-black);
+  letter-spacing: var(--tracking-wider);
+  background: linear-gradient(135deg, var(--color-cyan-bright) 0%, var(--color-electric-glow) 50%, var(--color-violet-glow) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  text-shadow: none;
+}
+
+/* Subheadline */
+.subheadline {
+  text-align: center;
+}
+
+.subheadline p {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-widest);
+  color: var(--color-muted);
+  text-transform: uppercase;
+}
+
+/* CTA button */
+.ctaBtn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-10);
+  border: 1px solid var(--color-cyan);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-cyan-bright);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wider);
+  cursor: pointer;
+  transition: background var(--transition-mid), box-shadow var(--transition-mid),
+    color var(--transition-mid);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
+}
+
+.ctaBtn:hover {
+  background: rgba(6, 182, 212, 0.1);
+  box-shadow: var(--glow-cyan);
+  color: var(--color-white);
+}
+
+.ctaBtnArrow {
+  font-size: var(--text-base);
+  transition: transform var(--transition-fast);
+}
+
+.ctaBtn:hover .ctaBtnArrow {
+  transform: translateX(4px);
+}
+
+/* Skip */
+.skipBtn {
+  position: absolute;
+  bottom: var(--space-8);
+  right: var(--space-8);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-dim);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.skipBtn:hover {
+  color: var(--color-muted);
+  border-color: var(--color-dim);
+}
+
+.skipBtn span {
+  padding: 2px 6px;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  font-size: 0.6rem;
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .headlineText {
+    font-size: clamp(2.5rem, 14vw, 4.5rem);
+  }
+
+  .coreWrap {
+    transform: scale(0.7);
+  }
+
+  .skipBtn {
+    bottom: var(--space-4);
+    right: var(--space-4);
+  }
+}
+

@@ -1,0 +1,46 @@
+.dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  background: var(--color-cyan-bright);
+  border-radius: var(--radius-full);
+  pointer-events: none;
+  z-index: var(--z-cursor);
+  will-change: transform;
+  box-shadow: 0 0 6px var(--color-cyan);
+}
+
+.ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid var(--color-cyan);
+  border-radius: var(--radius-full);
+  pointer-events: none;
+  z-index: var(--z-cursor);
+  will-change: transform;
+  opacity: 0.7;
+  transition: transform 0.08s ease, border-color 0.2s ease,
+    opacity 0.2s ease, width 0.2s ease, height 0.2s ease;
+}
+
+/* Hide on touch devices */
+@media (hover: none), (pointer: coarse) {
+  .dot,
+  .ring {
+    display: none;
+  }
+}
+
+/* Hide when reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .dot,
+  .ring {
+    display: none;
+  }
+}
+
